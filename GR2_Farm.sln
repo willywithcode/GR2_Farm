@@ -1,14 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngameDebugConsole.Runtime", "IngameDebugConsole.Runtime.csproj", "{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{23BB70B8-A2BB-E181-0B80-4ECBBA37FCCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngameDebugConsole.Editor", "IngameDebugConsole.Editor.csproj", "{35FF8247-A055-B2ED-6EF9-889A55355CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{8FB33689-125D-E471-9652-8ECE55C02DCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23BB70B8-A2BB-E181-0B80-4ECBBA37FCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BB70B8-A2BB-E181-0B80-4ECBBA37FCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BB70B8-A2BB-E181-0B80-4ECBBA37FCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BB70B8-A2BB-E181-0B80-4ECBBA37FCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FF8247-A055-B2ED-6EF9-889A55355CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FF8247-A055-B2ED-6EF9-889A55355CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FF8247-A055-B2ED-6EF9-889A55355CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FF8247-A055-B2ED-6EF9-889A55355CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB33689-125D-E471-9652-8ECE55C02DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB33689-125D-E471-9652-8ECE55C02DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB33689-125D-E471-9652-8ECE55C02DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB33689-125D-E471-9652-8ECE55C02DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
