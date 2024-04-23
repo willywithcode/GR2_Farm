@@ -8,7 +8,6 @@ public class GameManager : Singleton<GameManager>
     public Transform PlayerTF;
     private void Awake()
     {
-        PlayerTF = player.transform;
-        player.inventory = new Inventory(10);
+        PlayerTF = player.transform;        
     }
 }

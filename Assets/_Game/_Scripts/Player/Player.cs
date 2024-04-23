@@ -13,14 +13,15 @@ public class Player : MonoBehaviour
     [SerializeField] Animator Anim;
     [SerializeField]　private  Rigidbody2D rb;
     private bool IsGround;
-    public Inventory inventory;
 
     public float speed;
     Vector2 movement;
     Vector2 direction;
     private PlayerAction PlayerAction;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
+    private bool IsAttack;
+    private float timeAttack = 0.25f;
+    private float attackCounter = 0.25f;
     private void Awake()
     {
         PlayerAction = new PlayerAction();
@@ -41,7 +42,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (IsAttack)
+        {
+            attackCounter -= Time.deltaTime;
+            if(attackCounter <= 0)
+            {
+                Anim.SetBool("IsAttacking", false);
+                IsAttack = false;
+            }
+        }
         PlayerInput();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Anim.SetBool("IsAttacking", true);
+            IsAttack = true;
+            attackCounter = timeAttack;
+        }
     }
     private void FixedUpdate()
     {
