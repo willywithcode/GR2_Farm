@@ -10,7 +10,7 @@ public class Collectable : MonoBehaviour
     private float speed = 5f;
     public float PickupDistance = 3f;
     public float Distance;
-
+    public Sprite Icon;
     
     // Update is called once per frame
     void Update()
@@ -24,7 +24,7 @@ public class Collectable : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.PlayerTF.position,speed*Time.deltaTime);
         if (Distance < 0.1f)
         {
-            GameManager.Instance.player.inventory.AddItem(this.type);
+            GameManager.Instance.player.inventory.AddItem(this);
             Destroy(this.gameObject);
         }
     }

@@ -11,12 +11,14 @@ public class Inventory
         public ItemType type;
         public int count;
         public int maxCount;
+        public Sprite Icon;
 
         public Item()
         {
             type = ItemType.none;
             count = 0;
             maxCount = 3;
+            
         }
 
         public bool CanAdd()
@@ -28,9 +30,10 @@ public class Inventory
             return false;
         }
 
-        public void Add(ItemType type)
+        public void Add(Collectable item)
         {
-            this.type = type;
+            this.type = item.type;
+            this.Icon = item.Icon;
             count++;
         }
     }
@@ -45,22 +48,22 @@ public class Inventory
         }
     }
 
-    public void AddItem(ItemType itemType)
+    public void AddItem(Collectable newItem)
     {
         foreach (Item item in Items)
         {
 
-            if (item.type == itemType && item.CanAdd())
+            if (item.type == newItem.type && item.CanAdd())
             {
-                item.Add(itemType);
+                item.Add(newItem);
                 return;
             }
         }
-        foreach (Item item1 in Items)
+        foreach (Item item in Items)
         {
-            if (item1.type == ItemType.none)
+            if (item.type == ItemType.none)
             {
-                item1.Add(itemType);
+                item.Add(newItem);
                 return;
             }
         }
