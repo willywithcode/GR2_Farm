@@ -66,8 +66,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\_Game\_Scripts\CounterTime.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\_Game\_Scripts\InventoryController.cs" />
     <Compile Include="Assets\_Game\_Scripts\Enemy\EnemyController.cs" />
+    <Compile Include="Assets\_Game\_Scripts\Flash.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -113,11 +114,14 @@
     <Compile Include="Assets\_Game\ScriptableObjects\EquippableItemSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\_Game\_Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\_Game\_Scripts\CameraFollow.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\_Game\ScriptableObjects\ItemModifiers\CharacterStatHungerModifierSO.cs" />
     <Compile Include="Assets\_Game\_Scripts\Enemy\EnemyStateMachine\AttackState.cs" />
+    <Compile Include="Assets\_Game\_Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\_Game\_Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\_Game\_Scripts\KnockBack.cs" />
     <Compile Include="Assets\_Game\_Scripts\Enemy\EnemyStateMachine\IdleState.cs" />
     <Compile Include="Assets\_Game\ScriptableObjects\InventorySO.cs" />
     <Compile Include="Assets\_Game\_Scripts\Enemy\EnemyPathFinding.cs" />
@@ -140,9 +144,11 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\_Game\_Asset\Sound\Minifantasy_ForgottenPlains_Music\Minifantasy_ForgottenPlains_Music\Licensing.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\_Game\_Asset\Sound\Minifantasy_ForgottenPlains_Music\Minifantasy_ForgottenPlains_Music\Acknowledgements.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\_Game\_Asset\mystic_woods_free_2.1\read_me.txt" />
     <None Include="Assets\_Game\_Graphics\generic-rpg-pack_v0.4_(alpha-release)_vacaroxa\release.txt" />
@@ -432,6 +438,9 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>F:\gameunity\2022.3.11f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -965,6 +974,18 @@
     <ProjectReference Include="IngameDebugConsole.Editor.csproj">
       <Project>{35FF8247-A055-B2ED-6EF9-889A55355CC8}</Project>
       <Name>IngameDebugConsole.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{3B1BD130-F34D-1B17-8ED1-8367A7C90254}</Project>
+      <Name>PackageToolsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{3846A0CD-442C-F70D-B6E3-B9C250959619}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{5AFA3E62-FCA9-CC0A-17B2-4D1339DE4927}</Project>
+      <Name>AstarPathfindingProject</Name>
     </ProjectReference>
     <ProjectReference Include="IngameDebugConsole.Runtime.csproj">
       <Project>{51A5DB9D-38C6-2FF9-B5D1-440800EFEA1B}</Project>

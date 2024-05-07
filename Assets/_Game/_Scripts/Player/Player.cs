@@ -12,26 +12,41 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator Anim;
     [SerializeField]　private  Rigidbody2D rb;
-    private bool IsGround;
+
+    private int maxHeath = 100;
+    private int currentHeath;
+    private int maxHunger = 100;
+    private int currentHunger;
 
     public float speed;
-    Vector2 movement;
-    Vector2 direction;
+    public Vector2 movement;
     private PlayerAction PlayerAction;
     [SerializeField] private SpriteRenderer spriteRenderer;
     private bool IsAttack;
     private float timeAttack = 0.25f;
-    private float attackCounter = 0.25f;
+    private float attackCounter;
+    bool IsDeath;
+    KnockBack knockBack;
+    bool IsKnockback;
+    Flash flash;
     private void Awake()
     {
         PlayerAction = new PlayerAction();
         rb = GetComponent<Rigidbody2D>();
         //Anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        knockBack = GetComponent<KnockBack>();
+        flash = GetComponent<Flash>();
     }
     // Start is called before the first frame update
     void Start()
     {
+        IsKnockback = false;
+        IsDeath = false;
+        IsAttack = false;
+        currentHeath = maxHeath;
+        currentHunger = maxHunger;
+        BodyManager.Instance.SetMaxParameter(currentHeath, currentHunger);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -42,6 +57,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            TakeDamage(10);
+        }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ReduceHunger(10);
+        }
         if (IsAttack)
         {
             attackCounter -= Time.deltaTime;
@@ -51,19 +74,25 @@ public class Player : MonoBehaviour
                 IsAttack = false;
             }
         }
-        PlayerInput();
+        if(!IsKnockback && !IsDeath)
+        {
+            PlayerInput();
+        }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Anim.SetBool("IsAttacking", true);
-            IsAttack = true;
-            attackCounter = timeAttack;
+            if (!IsAttack)
+            {
+                Anim.SetBool("IsAttacking", true);
+                IsAttack = true;
+                attackCounter = timeAttack;
+            }
         }
+
     }
     private void FixedUpdate()
     {
 
-            Move();
-            
+            Move();           
         if(Mathf.Abs(movement.x) == 1 || Mathf.Abs(movement.y) == 1)
         {
             Idle();
@@ -75,10 +104,23 @@ public class Player : MonoBehaviour
 
     private void PlayerInput()
     {
+        
         movement = PlayerAction.Movement.Move.ReadValue<Vector2>();
+        if(movement!= Vector2.zero)
+        {
+            if (!SoundManager.Instance.StepGrassAudio.isPlaying)
+            {
+                SoundManager.Instance.StepGrassAudio.Play();
+            }
+        }
+        else
+        {
+            SoundManager.Instance.StepGrassAudio.Stop();
+        }
     }
     void Move()
     {
+        
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         Anim.SetFloat("MoveX", movement.x);
         Anim.SetFloat("MoveY", movement.y);
@@ -88,33 +130,68 @@ public class Player : MonoBehaviour
 
     void Idle()
     {
+
         Anim.SetFloat("IdleX", movement.x);
         Anim.SetFloat("IdleY", movement.y);
 
     }
-    //public bool CheckGround(Vector3 direc)
-    //{
-    //    Debug.DrawRay(this.transform.position, Vector3.forward,  Color.red, 5f);
-    //    RaycastHit2D hit;
-    //    Vector2 pos = new Vector2(this.transform.position.x, this.transform.position.y) + new Vector2(direc.x, direc.y);
-    //    if(Physics2D.Raycast(pos, Vector3.forward ,5f, GroundLayer))
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-
-    //}
 
 
+    public void TakeDamage(int damage)
+    {
 
+        if(damage >= currentHeath)
+        {
+            currentHeath = 0;
+            BodyManager.Instance.setHeath(currentHeath);
+        }
+        else
+        {
+            currentHeath -= damage;
+            BodyManager.Instance.setHeath(currentHeath);
+        }
 
-    //void ChangeAnim(string animName)
-    //{
-    //    if(currentAnim != animName)
-    //    {
-    //        Anim.ResetTrigger(currentAnim);
-    //        currentAnim = animName;
-    //        Anim.SetTrigger(currentAnim);
-    //    }
-    //}
+        DetectDeath();
+
+    }
+
+    public void HealHeath(int amount)
+    {
+        int value = amount + currentHeath;
+        currentHeath = value > maxHeath ? maxHeath : value;
+        BodyManager.Instance.setHeath(currentHeath);
+    }
+    public void ReduceHunger(int amount)
+    {
+        if (amount >= currentHunger)
+        {
+            currentHunger = 0;
+            BodyManager.Instance.setHunger(currentHunger);
+        }
+        else
+        {
+            currentHunger -= amount;
+            BodyManager.Instance.setHunger(currentHunger);
+        }
+    }
+
+    public void IncreaseHunger(int amount)
+    {
+        int value = amount + currentHunger;
+        currentHunger = value > maxHunger ? maxHunger : value;
+        BodyManager.Instance.setHunger(currentHunger);
+    }
+
+    public void DetectDeath()
+    {
+        if(currentHeath <= 0)
+        {
+            // TO DO Death
+        }
+        else
+        {            
+            StartCoroutine(flash.FlashRoutine());
+        }
+    }
+
 }
