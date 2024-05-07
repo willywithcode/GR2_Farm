@@ -1,18 +1,16 @@
+using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Vector3 StartingPos;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        StartingPos = transform.position;
     }
 }
