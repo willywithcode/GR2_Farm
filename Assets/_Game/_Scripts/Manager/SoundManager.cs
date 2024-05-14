@@ -5,27 +5,35 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager>
 {
 
-    public AudioSource SoundAudio;
+    public AudioSource SoundAudioAll;
+    //public AudioSource SoundAudioPlayer;
     public AudioSource StepGrassAudio;
 
     [SerializeField] private AudioClip Sword;
     [SerializeField] private AudioClip PickUp;
     [SerializeField] private AudioClip TakeDamage;
+    [SerializeField] private AudioClip EdiableItem;
     [SerializeField] private AudioClip StepGrass;
 
 
     public void OnPlaySword()
     {
-        SoundAudio.PlayOneShot(Sword);
+        SoundAudioAll.PlayOneShot(Sword);
     }
 
     public void OnPlayPickUp()
     {
-        SoundAudio.PlayOneShot(PickUp);
+        SoundAudioAll.PlayOneShot(PickUp);
     }
 
     public void OnTakeDamage()
     {
-        SoundAudio.PlayOneShot(TakeDamage);
+        SoundAudioAll.PlayOneShot(TakeDamage);
     }
+
+    public void OnEdiableItem()
+    {
+        SoundAudioAll.PlayOneShot(EdiableItem);
+    }
+
 }

@@ -121,10 +121,18 @@ public class InventoryPage : MonoBehaviour
 
     public void Hide()
     {
+        
         gameObject.SetActive(false);
         ResetDragItem() ;
     }
 
+    public void DeleteAllItemUI()
+    {
+        foreach(Transform child in ContentPanel)
+        {
+            Destroy(child.gameObject);
+        }
+    }
     public void ResetDragItem()
     {
         mouseFollower.Toggle(false);

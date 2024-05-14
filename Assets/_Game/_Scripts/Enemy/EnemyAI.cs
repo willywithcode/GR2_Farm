@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     }
     State state;
     Rigidbody2D rb;
+    [SerializeField] private   Collider2D col;
     EnemyController EnemyController;
     public bool Roaming;
     public Seeker seeker;
@@ -30,6 +31,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        //col= GetComponent<Collider2D>();
         EnemyController = GetComponent<EnemyController>();
     }
     private void Start()
@@ -164,14 +166,42 @@ public class EnemyAI : MonoBehaviour
     //        player.TakeDamage(20);
     //    }
     //}
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
-
-            Player player = collision.GetComponent<Player>();
+            col.isTrigger = true;
+            Player player = collision.collider.GetComponent<Player>();
             SoundManager.Instance.OnTakeDamage();
             player.TakeDamage(20);
         }
     }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        col.isTrigger = true;
+    //        Player player = collision.GetComponent<Player>();
+    //        SoundManager.Instance.OnTakeDamage();
+    //        player.TakeDamage(20);
+    //    }
+    //}
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        col.isTrigger = true;
+    //    }
+    //}
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            col.isTrigger = false;
+        }
+    }
+
+
 }

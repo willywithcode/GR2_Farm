@@ -25,18 +25,28 @@ public class InventoryItemUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     }
     public void ResetData()
     {
-        this.imageItem.gameObject.SetActive(false);
+        if(imageItem!= null)
+        {
+            this.imageItem.gameObject.SetActive(false);
+
+        }
         empty = true;
     }
 
     public void DeSelect()
     {
-        Border.enabled = false;
+        if (Border != null)
+        {
+            Border.enabled = false;
+        }
     }
 
     public void Select()
     {
-        Border.enabled = true;
+        if(Border != null)
+        {
+            Border.enabled = true;
+        }
     }
 
     public void SetData(Sprite sprite, int quantity)
