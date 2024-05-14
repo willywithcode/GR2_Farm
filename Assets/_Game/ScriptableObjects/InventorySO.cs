@@ -22,6 +22,7 @@ public class InventorySO : ScriptableObject
         }
     }
 
+    // add new item neu chua full hoac add them item da co neu chua full quantity
     public int AddItem(ItemSO item, int quantity)
     {
         if(item.IsStackable == false)
@@ -36,7 +37,7 @@ public class InventorySO : ScriptableObject
                 return quantity;
             }
         }
-        quantity = AddSatckableItem(item, quantity);
+        quantity = AddStackableItem(item, quantity);
         ChangeInfor();
         return quantity;
     }
@@ -59,7 +60,9 @@ public class InventorySO : ScriptableObject
         return 0;
     }
 
-    private int AddSatckableItem(ItemSO item, int quantity)
+
+    // add them item neu chua full quantity
+    private int AddStackableItem(ItemSO item, int quantity)
     {
         for (int i = 0; i < inventoryItems.Count; i++)
         {
@@ -119,12 +122,13 @@ public class InventorySO : ScriptableObject
         return inventoryItems[itemIndex];
     }
 
+    // swap item
     internal void SwapItem(int index1, int index2)
     {
         //Debug.Log(index1 + "" + index2);
-        InventoryItem item1 = inventoryItems[index1];
+        InventoryItem itemtmp = inventoryItems[index1];
         inventoryItems[index1] = inventoryItems[index2];
-        inventoryItems[index2] = item1;
+        inventoryItems[index2] = itemtmp;
         ChangeInfor();
     }
 
@@ -135,6 +139,7 @@ public class InventorySO : ScriptableObject
 
     internal void RemoveItem(int itemIndex, int amount)
     {
+        SoundManager.Instance.OnEdiableItem();
         if (inventoryItems.Count > itemIndex)
         {
             if (inventoryItems[itemIndex].IsEmpty)

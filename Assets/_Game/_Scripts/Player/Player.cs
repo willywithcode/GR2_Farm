@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
         currentHunger = maxHunger;
         BodyManager.Instance.SetMaxParameter(currentHeath, currentHunger);
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(ReduceHungerRoutine());
+
     }
 
     private void OnEnable()
@@ -57,13 +59,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TakeDamage(10);
-        }
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ReduceHunger(10);
+            UIManager.Instance.OnPauseMenu();
         }
         if (IsAttack)
         {
@@ -82,6 +81,7 @@ public class Player : MonoBehaviour
         {
             if (!IsAttack)
             {
+                ReduceHunger(3);
                 Anim.SetBool("IsAttacking", true);
                 IsAttack = true;
                 attackCounter = timeAttack;
@@ -192,6 +192,13 @@ public class Player : MonoBehaviour
         {            
             StartCoroutine(flash.FlashRoutine());
         }
+    }
+
+    IEnumerator ReduceHungerRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        ReduceHunger(2);
+        StartCoroutine(ReduceHungerRoutine());
     }
 
 }

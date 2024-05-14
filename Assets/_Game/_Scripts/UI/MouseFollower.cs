@@ -36,7 +36,7 @@ public class MouseFollower : MonoBehaviour
         //{
         //    Update();
         //}
-        Debug.Log(val);
+        //Debug.Log(val);
         gameObject.SetActive(val);
     }
 }
